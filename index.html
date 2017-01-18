@@ -5,11 +5,11 @@
     <!-- Charset (UTF-8 by default) -->
     <meta charset="utf-8">
     <!-- Author -->
-    <meta name="author" content="YOUR NAME">
+    <meta name="author" content="desireyavro">
     <!-- Author name -->
-    <meta name="description" content="DESCRIPTION">
+    <meta name="description" content="everybodytravel test app">
     <!-- Description -->
-    <meta name="keywords" content="Keywords" />
+    <meta name="keywords" content="polymer, app, travel, accessibility" />
     <!-- Keywords (don't really need them) -->
     <!-- Mobile Stuff -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,17 +18,17 @@
 
     <!-- Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="TITLE">
-    <link rel="icon" sizes="192x192" href="img/picture.jpg">
+    <meta name="application-name" content="everybodytravel test app">
+    <link rel="icon" sizes="192x192" href="img/logo.png">
 
     <!-- Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="TITLE">
-    <link rel="apple-touch-icon" href="img/picture.jpg">
+    <meta name="apple-mobile-web-app-title" content="everybodytravel test app">
+    <link rel="apple-touch-icon" href="img/logo.png">
 
     <!-- Windows 8 -->
-    <meta name="msapplication-TileImage" content="img/picture.jpg">
+    <meta name="msapplication-TileImage" content="img/logo.png">
     <meta name="msapplication-TileColor" content="#FFFFFF">
 
     <!-- Chrome theme Color -->
@@ -37,7 +37,7 @@
     <!-- Fav icon -->
     <link rel="shortcut icon" href="favicon.ico">
     <!-- Title, DON'T FORGET TO CHANGE THE TITLE IN bower.js -->
-    <title>TITLE</title>
+    <title>everybodytravel-test-app</title>
     <!-- Roboto Font -->
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <!-- IMPORT ALL BASIC COMPONENTS FROM bower_components-->
@@ -76,19 +76,73 @@
     </div>-->
 
     <!-- Drawer -->
-    <paper-drawer-panel transition id="core_drawer_panel" touch-action>
+    <paper-drawer-panel transition id="core_drawer_panel" narrow="{{narrow}}" touch-action>
+
         <section id="section" drawer>
-            <div class="drawerbg">
-                <p class="drawertitle">DRAWER TITLE</p>
-            </div>
-            <p class="drawerhr">Category</p>
-            <!-- Drawer Items -->
-            <paper-item>
-                <iron-icon icon="help" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
-                <paper-item-body>
-                    <div class="item">ITEM WITH ICON</div>
-                </paper-item-body>
-            </paper-item>
+
+            <paper-header-panel mode="scroll" drawer>
+                <paper-toolbar id="navheader" class="tall">
+                    <iron-image id="coverimage" placeholder="img/cover.jpg" src="[[user.cover]]" sizing="cover" preload fade class="fit"></iron-image>
+                    <img class="middle profile" src$="{{user.profile}}" hidden="{{!user.profile}}">
+                    <!--<div class="bottom layout vertical">
+                        <span>{{user.name}}</span>
+                        <span>{{user.email}}</span>
+                    </div>-->
+                </paper-toolbar>
+                <paper-menu selected="0" selectable="paper-icon-item" on-iron-activate="menuSelect">
+
+                    <paper-item>
+                        <iron-icon icon="home" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+                        <paper-item-body>
+                            <div class="item">Member</div>
+                        </paper-item-body>
+                    </paper-item>
+
+                    <paper-item>
+                        <iron-icon icon="mail" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+                        <paper-item-body>
+                            <div class="item">My trips</div>
+                        </paper-item-body>
+                    </paper-item>
+
+                    <paper-item>
+                        <iron-icon icon="help" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+                        <paper-item-body>
+                            <div class="item">About</div>
+                        </paper-item-body>
+                    </paper-item>
+
+                </paper-menu>
+
+                <!--<section id="section" drawer>
+                    <div class="drawerbg">
+                        <p class="drawertitle">DRAWER TITLE</p>
+                    </div>-->
+                <!--<p class="drawerhr">Category</p>-->
+                <!-- Drawer Items -->
+
+                <p class="drawerhr">Category</p>
+
+                <paper-item>
+                    <iron-icon icon="home" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+                    <paper-item-body>
+                        <div class="item" href="#hotel">Hotel</div>
+                    </paper-item-body>
+                </paper-item>
+
+                <paper-item>
+                    <iron-icon icon="send" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+                    <paper-item-body>
+                        <div class="item" href="#flight">flight</div>
+                    </paper-item-body>
+                </paper-item>
+
+                <paper-item>
+                    <iron-icon icon="star" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+                    <paper-item-body>
+                        <div class="item">Full experience</div>
+                    </paper-item-body>
+                </paper-item>
 
 
         </section>
@@ -113,8 +167,18 @@
 
             <!-- Place this tag where you want the Awesome Table Widget to render -->
             <!--<div data-type="AwesomeTableView" data-viewID="-Kai8Y9ouK9HP3jSiqWW"></div>-->
-            <iframe height="500px" width="100%" style="border:none;" src="https://view-awesome-table.com/-Kai8Y9ouK9HP3jSiqWW/view">
-            </iframe>
+            <div id='hotel'>
+
+                <iframe height="550px" width="100%" style="border:none;" src="https://view-awesome-table.com/-Kai8Y9ouK9HP3jSiqWW/view">
+              </iframe>
+
+            </div>
+            <div id='flight'>
+
+                <iframe height="550px" width="100%" style="border:none;" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCsbzuJDUEOoq-jS1HO-LUXW4qo0gW9FNs&amp;language=en&amp;signed_in=true">
+              </iframe>
+
+            </div>
 
 
         </section>
